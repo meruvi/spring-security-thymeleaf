@@ -1,10 +1,26 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:insert="fragments :: headerfiles">
 </head>
 <body>
+<header th:insert="fragments :: nav"></header>
 
+<div class="container">
+    <div class="card">
+        <div class="card-header text-center">
+            Detalle de producto
+        </div>
+        <div class="card-body">
+            <h5 class="card-title" th:text="'Nombre: ' + ${producto.nombre}"></h5>
+            <p class="card-text" th:text="'Precio: ' + ${producto.precio}"></p>
+            <p class="text-justify"><b>Descripción: </b>Mix and match multiple content types to create the card you need, or throw everything in there. Shown below are image styles, blocks, text styles, and a list group—all wrapped in a fixed-width card.</p>
+            <a th:href="@{/producto/lista}" class="btn btn-outline-info">
+                <i class="fa-solid fa-arrow-circle-left"></i> Volver</a>
+        </div>
+    </div>
+</div>
+
+<footer th:insert="fragments :: footer"></footer>
+<div th:insert="fragments :: scripts"></div>
 </body>
 </html>
