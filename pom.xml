@@ -12,6 +12,7 @@
 	<artifactId>crud</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>crud</name>
+	<packaging>war</packaging>
 	<description>Demo project for Spring Boot</description>
 
 	<properties>
@@ -70,6 +71,7 @@
 	</dependencies>
 
 	<build>
+		<finalName>crudback</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
