@@ -12,4 +12,14 @@ public class HomeController {
     public String index() {
         return "index";
     }
+
+    @GetMapping("/forbidden")
+    public String forbidden() {
+        return "forbidden";
+    }
+
+    @GetMapping("/login")
+    public String login(){
+        return "login";
+    }
 }

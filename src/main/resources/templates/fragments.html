@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:fragment="headerfiles">
     <title>Spring Security</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -21,11 +22,11 @@
                         <a class="nav-link" th:href="@{/}">
                             <i class="fa-solid fa-house"></i> Inicio <span class="sr-only">(current)</span></a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item" sec:authorize="isAuthenticated() && !hasRole('ROLE_ADMIN')">
                         <a class="nav-link" th:href="@{/producto/lista}">
                             <i class="fa-solid fa-bars-staggered"></i> Lista</a>
                     </li>
-                    <li class="nav-item dropdown">
+                    <li class="nav-item dropdown" sec:authorize="hasRole('ROLE_ADMIN')">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-expanded="false">
                             <i class="fa-solid fa-toolbox"></i> Administración
                         </a>
@@ -38,9 +39,15 @@
                         </div>
                     </li>
                 </ul>
-                <form class="form-inline my-2 my-lg-0">
+
+                <a th:href="@{/usuario/login}" sec:authorize="!isAuthenticated()">
                     <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
                         <i class="fa-solid fa-right-to-bracket"></i> Iniciar Sesión</button>
+                </a>
+
+                <form sec:authorize="isAuthenticated()" class="form-inline my-2 my-lg-0" th:action="@{/logout}" method="post">
+                    <button class="btn btn-outline-danger my-2 my-sm-0" type="submit">
+                        <i class="fas fa-sign-out-alt"></i>Cerrar Sesión</button>
                 </form>
             </div>
         </nav>
